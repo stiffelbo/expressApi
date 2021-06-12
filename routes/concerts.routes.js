@@ -8,24 +8,26 @@ router.route('/concerts').get((req, res) => {
   res.json(db.concerts);  
 });
 
-// get consert by :id
+// get concert by :id
 router.route('/concerts/:id').get((req, res) => {
   const id = req.params.id; 
-  const response = db.concerts.filter((elem)=>{return elem.id == id}).length ? db.concerts.filter((elem)=>{return elem.id == id})[0] : {'err': `no such entitiy ${id}`};
-  res.json(response);  
+  const filter = db.concerts.filter((elem)=>{return elem.id == id});
+  const response = filter.length ? filter[0] : {'err': `no such entitiy ${id}`};  
+  res.status(200).json(response);  
 });
 
-// post new consert with random id
-router.route('/concerts/').post((req, res) => {  
-  const performer = req.body.performer;
-  const genre = req.body.genre;
-  const price = req.body.price;
-  const day = req.body.day;
-  const image = req.body.image;
-  const newId = uuid.v4();
-  const entry = {'id' : newId, 'performer' : performer, 'genre' : genre, 'price' : price, 'day' : day, "image" : image};  
+// post new concert with random id
+router.route('/concerts/').post((req, res) => {
+  const entry = {
+    performer : req.body.performer,
+    genre : req.body.genre,
+    price : req.body.price,
+    day : req.body.day,
+    image : req.body.image,
+    id : uuid.v4(),
+  };
   db.concerts.push(entry);
-  res.json(entry);     
+  res.status(200).json(entry);     
 });
 
 //update concert by :id
@@ -42,9 +44,8 @@ router.route('/concerts/:id').put((req, res) => {
       val.genre = genre;
       val.price = price;
       val.day = day;
-      val.image = image;
-      const entry = {'performer' : performer, 'genre' : genre, 'price' : price, 'day' : day, "image" : image};
-      res.json(entry);
+      val.image = image;         
+      res.status(200).json(val);
     } 
   });
 });
