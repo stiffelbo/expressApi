@@ -7,7 +7,7 @@ class SeatChooser extends React.Component {
   
   componentDidMount() {
     const { loadSeats } = this.props;
-    loadSeats();
+    loadSeats();       
   }
 
   isTaken = (seatId) => {
@@ -19,7 +19,7 @@ class SeatChooser extends React.Component {
   prepareSeat = (seatId) => {
     const { chosenSeat, updateSeat } = this.props;
     const { isTaken } = this;
-
+    
     if(seatId === chosenSeat) return <Button key={seatId} className="seats__seat" color="primary">{seatId}</Button>;
     else if(isTaken(seatId)) return <Button key={seatId} className="seats__seat" disabled color="secondary">{seatId}</Button>;
     else return <Button key={seatId} color="primary" className="seats__seat" outline onClick={(e) => updateSeat(e, seatId)}>{seatId}</Button>;
@@ -29,7 +29,7 @@ class SeatChooser extends React.Component {
 
     const { prepareSeat } = this;
     const { requests } = this.props;
-
+    
     return (
       <div>
         <h3>Pick a seat</h3>

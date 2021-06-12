@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const uuid = require('uuid');
+const { seats } = require('../db');
 
 // get all seats
 router.route('/seats').get((req, res) => {
@@ -28,6 +29,7 @@ router.route('/seats/').post((req, res) => {
     day: req.body.day,
     id : uuid.v4(),
   };
+  
   //data validation flag
   let properRequest = true;
   //error message
@@ -42,9 +44,19 @@ router.route('/seats/').post((req, res) => {
     }
   }
   //execute entry and respond or send err message
-  if(properRequest){    
-    db.seats.push(entry);
-    res.status(200).json(entry); 
+  if(properRequest){
+    //check if seat is empty
+    const isBooked = db.seats.some(seat => {
+      if(seat.day == entry.day && seat.seat == entry.seat){        
+        return true;
+      } 
+    });
+    if(isBooked){
+      res.status(404).json({ message: "The slot is already taken..." });
+    }else{
+      db.seats.push(entry);
+      res.status(200).json(entry);
+    }
   }else{
     res.status(406).json(err);
   }      

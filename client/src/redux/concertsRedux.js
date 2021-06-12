@@ -31,8 +31,7 @@ export const loadConcertsRequest = () => {
     dispatch(startRequest());
     try {
 
-      let res = await axios.get(`${API_URL}/concerts`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      let res = await axios.get(`${API_URL}/concerts`);      
       dispatch(loadConcerts(res.data));
       dispatch(endRequest());
 
