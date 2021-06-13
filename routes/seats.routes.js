@@ -56,6 +56,10 @@ router.route('/seats/').post((req, res) => {
     }else{
       db.seats.push(entry);
       res.status(200).json(entry);
+      //web sockets
+      const io = req.io;
+      const seats = db.seats;
+      io.emit('seatsUpdated', seats);
     }
   }else{
     res.status(406).json(err);
