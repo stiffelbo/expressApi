@@ -6,10 +6,18 @@ import './SeatChooser.scss';
 
 class SeatChooser extends React.Component {
   
+  constructor(props) {
+    super(props);
+    this.state = {occupied : 0};
+  }
+    
   componentDidMount() {
-    const { loadSeats, loadSeatsData } = this.props;
+    const { loadSeats, loadSeatsData, chosenDay } = this.props;
     this.socket = io((process.env.NODE_ENV === 'production') ? 'localhost:3000' : 'localhost:8000');
-    this.socket.on('seatsUpdated', (seats) => loadSeatsData(seats));    
+    this.socket.on('seatsUpdated', (seats) => {      
+      loadSeatsData(seats);
+      this.seatsCounter(seats, chosenDay);
+    });    
     loadSeats();       
   }
 
@@ -17,6 +25,12 @@ class SeatChooser extends React.Component {
     const { seats, chosenDay } = this.props;
 
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
+  }
+
+  seatsCounter(pickedSeats, day){
+    const occupied = pickedSeats.filter(seat => seat.day === day).length;
+    this.setState({ occupied: occupied});
+    console.log(this.state);
   }
 
   prepareSeat = (seatId) => {
@@ -41,6 +55,7 @@ class SeatChooser extends React.Component {
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success) && <div className="seats">{[...Array(50)].map((x, i) => prepareSeat(i+1) )}</div>}
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending) && <Progress animated color="primary" value={50} /> }
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error) && <Alert color="warning">Couldn't load seats...</Alert> }
+        <div className="seats_counter">Free seats: {50 - this.state.occupied}/50</div>
       </div>
     )
   };
