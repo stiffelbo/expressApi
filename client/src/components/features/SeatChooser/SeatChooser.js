@@ -12,7 +12,7 @@ class SeatChooser extends React.Component {
   }
     
   componentDidMount() {
-    const { loadSeats, loadSeatsData, chosenDay } = this.props;
+    const { loadSeats, loadSeatsData, chosenDay } = this.props;    
     this.socket = io((process.env.NODE_ENV === 'production') ? 'localhost:3000' : 'localhost:8000');
     this.socket.on('seatsUpdated', (seats) => {      
       loadSeatsData(seats);

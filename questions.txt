@@ -1,0 +1,10 @@
+1. Jak dodawać koljeny element do bazy danych z autoincerementacją id np. 1,2,3,4,5 jak w MySql
+2. struktura bazy danych, wydawało by sie ze seats jest relacyjna ale nie jest,
+gdyby wskazywała na konkretny koncert to tak.
+można by wydzielić clients jako osobną tablice ale to rozwinięcie struktury (dodanie property do klienta) a nie optymalizacja.
+3. Testimonials np mają nie tylko wpisy clientów ale i wykonawców jak w tym przypadku robic reacje ze dane Id moze odnośić do Id klienta lub performara (gdyby takie tablice były)? 
+
+podobnie jakby mieć zamówienia ale różne typy produktow trzymac w osbnych tabelach, chyba bez sensu, bo lepiej mieć tabele na typy a w ramach samych produktow wskazywac typ zamiast trzymać w osobnyc tablicach np cars, bikes/
+
+idąc tym tropem no to można zrobić tabele users i w niej mieć typy jako client i performer.
+Pytanie w którym momencie jest sens tworzyć osobna tablice na typy a kiedy miec poprostu property z możliwością wpisu?
