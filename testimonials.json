@@ -1,8 +1,37 @@
-[
-  { "id": 1, "author": "John Doe", "text": "This company is worth every coin!" },
-  { "id": 2, "author": "Amanda Doe", "text": "They really know how to make you happy." },
-  { "id": 3, "author": "Armand Perez", "text": "Good!" },
-  { "id": 4, "author": "Diana May", "text": "I\"m happy!" },
-  { "id": 5, "author": "Joe Mitten", "text": "They really know stuff." },
-  { "id": 6, "author": "Joseph Burke", "text": "Best you can find." }  
-]
+[{
+  "_id": {
+    "$oid": "60ce358e547d66136ca93f81"
+  },
+  "author": "John Doe",
+  "text": "This company is worth every coin!"
+},{
+  "_id": {
+    "$oid": "60ce358e547d66136ca93f82"
+  },
+  "author": "Amanda Doe",
+  "text": "They really know how to make you happy."
+},{
+  "_id": {
+    "$oid": "60ce358e547d66136ca93f83"
+  },
+  "author": "Armand Perez",
+  "text": "Good!"
+},{
+  "_id": {
+    "$oid": "60ce358e547d66136ca93f84"
+  },
+  "author": "Diana May",
+  "text": "I\"m happy!"
+},{
+  "_id": {
+    "$oid": "60ce358e547d66136ca93f85"
+  },
+  "author": "Joe Mitten",
+  "text": "They really know stuff."
+},{
+  "_id": {
+    "$oid": "60ce358e547d66136ca93f86"
+  },
+  "author": "Joseph Burke",
+  "text": "Best you can find."
+}]
