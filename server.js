@@ -27,7 +27,7 @@ app.use((req, res) => {
 });
 
 // connects our backend code with the database
-mongoose.connect('mongodb+srv://stiffelbo:stifelboMongo123@cluster0.vgspf.mongodb.net/newWaveDb?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://stiffelbo:stifelboMongo123@cluster0.vgspf.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
