@@ -14,10 +14,10 @@ describe('GET /api/concerts', () => {
       const testConcertOne = new Concert({ _id: '5d9f1140f10a81216cfd4408', performer: 'testPerformer1', genre: 'testGenre1', price: 20, day: 3, image: '/img/uploads/testImage1.jpg' });
       await testConcertOne.save();
 
-      const testConcertTwo = new Concert({ _id: '5d9f1159f81ce8d1ef2bee48', performer: 'testPerformer2', genre: 'testGenre2', price: 30, day: 3, image: '/img/uploads/testImage2.jpg' });
+      const testConcertTwo = new Concert({ _id: '5d9f1159f81ce8d1ef2bee49', performer: 'testPerformer2', genre: 'testGenre2', price: 30, day: 3, image: '/img/uploads/testImage2.jpg' });
       await testConcertTwo.save();
 
-      const testConcertThree = new Concert({ _id: '5d9f1159f81ce8d1ef2bee48', performer: 'testPerformer3', genre: 'testGenre3', price: 40, day: 3, image: '/img/uploads/testImage3.jpg' });
+      const testConcertThree = new Concert({ _id: '5d9f1159f81ce8d1ef2bee50', performer: 'testPerformer3', genre: 'testGenre3', price: 40, day: 3, image: '/img/uploads/testImage3.jpg' });
       await testConcertThree.save();
   });
 
