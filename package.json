@@ -7,6 +7,7 @@
     "node": "10.23.3"
   },
   "scripts": {
+    "build": "cd client && npm run build",
     "start": "nodemon server.js",    
     "test": "set NODE_ENV=production && mocha --timeout 10000 \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- npm test"
