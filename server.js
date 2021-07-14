@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
+const path = require('path');
 
 // import routes
 const testimonialRoutes = require('./routes/testimonial.routes');
@@ -21,10 +22,17 @@ app.use('/api', testimonialRoutes);
 app.use('/api', concertsRoutes);
 app.use('/api', seatsRoutes);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+});
+
 //not valid endpoints
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found...' });
 });
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '/client/build')));
 
 // connects our backend code with the database
 
