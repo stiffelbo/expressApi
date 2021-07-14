@@ -3,6 +3,7 @@ import { API_URL } from '../config';
 
 /* SELECTORS */
 export const getConcerts = ({ concerts }) => concerts.data;
+
 export const getRequest = ({ concerts }) => concerts.request;
 
 /* ACTIONS */
@@ -24,7 +25,7 @@ export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export const loadConcerts = payload => ({ payload, type: LOAD_CONCERTS });
 
 /* THUNKS */
-
+/*akcja złożona, moze być async*/
 export const loadConcertsRequest = () => {
   return async dispatch => {
 

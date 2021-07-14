@@ -13,24 +13,29 @@ class SeatChooser extends React.Component {
     
   componentDidMount() {
     const { loadSeats, loadSeatsData, chosenDay } = this.props;    
-    this.socket = io((process.env.NODE_ENV === 'production') ? 'localhost:3000' : 'localhost:8000');
+    this.socket = io((process.env.NODE_ENV === 'production') ? 'localhost:3000' : '/');
     this.socket.on('seatsUpdated', (seats) => {      
       loadSeatsData(seats);
       this.seatsCounter(seats, chosenDay);
     });    
-    loadSeats();       
+    loadSeats();     
+  }
+
+  componentDidUpdate(prevProps){
+    const { seats, chosenDay } = this.props;
+    if(prevProps.chosenDay !== chosenDay || prevProps.seats.length !== seats.length){   
+      this.seatsCounter(seats, chosenDay);
+    } 
   }
 
   isTaken = (seatId) => {
     const { seats, chosenDay } = this.props;
-
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
   }
 
   seatsCounter(pickedSeats, day){
     const occupied = pickedSeats.filter(seat => seat.day === day).length;
     this.setState({ occupied: occupied});
-    console.log(this.state);
   }
 
   prepareSeat = (seatId) => {

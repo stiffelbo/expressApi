@@ -20,6 +20,12 @@ const items = [
     altText: 'Meet stars!',
     caption: 'Meet the biggest music starts live!',
     header: 'Meet stars!',
+  },
+  {
+    src: '/img/promo/promo3.jpg',
+    altText: 'Meet stars!',
+    caption: 'Meet the biggest music starts live!',
+    header: 'Get cruncky!',
   }
 ];
 
