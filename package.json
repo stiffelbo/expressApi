@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
+    "build": "cd client && yarn install && yarn build",
     "test": "set NODE_ENV=production && mocha --timeout 10000 \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- npm test"
   },
